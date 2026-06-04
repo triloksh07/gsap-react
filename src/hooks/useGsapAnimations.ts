@@ -17,10 +17,10 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
         const container = containerRef.current;
         if (!container) return;
 
-        // Initialize Lenis (Premium Smooth Scrolling)
+        // Initialize Lenis
         const lenis = new Lenis({
             duration: 2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Elegant, slow deceleration
+            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
@@ -30,21 +30,21 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
             infinite: false,
         });
 
+        const onScroll = () => {
+            return ScrollTrigger.update;
+        }
 
-        // Synchronize ScrollTrigger with Lenis updates
-        const onScroll = (): void => {
-            ScrollTrigger.update();
-        };
         lenis.on('scroll', onScroll);
 
         // Sync GSAP's tick with Lenis frames
         const onTicker = (time: number): void => {
             lenis.raf(time * 1000);
         };
+
         gsap.ticker.add(onTicker);
         gsap.ticker.lagSmoothing(0);
 
-        // Setup Type-Safe GSAP Animations Context
+        // GSAP Animations Context
         const ctx = gsap.context(() => {
 
             // Hero elements sequential entry

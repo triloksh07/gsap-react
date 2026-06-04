@@ -8,6 +8,14 @@
   --color-darker: #050505;
   --color-panel: #111111;
 
+  --fg: #ed5724;
+  --fg-dim: rgba(237, 87, 36, 0.5);
+  --fg-faint: rgba(237, 87, 36, 0.08);
+  --text: #f0ece4;
+  --text-dim: rgba(240, 236, 228, 0.45);
+  --border: rgba(240, 236, 228, 0.08);
+  --text-dim: rgba(240, 236, 228, 0.45);
+
   --font-mono: "JetBrains Mono", monospace;
   --font-space: "Space Mono", monospace;
 }

@@ -1,0 +1,95 @@
+.ambient-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden; /* Ensures particles don't create unwanted scrollbars */
+}
+
+/* -------------------- */
+/* Main Glow */
+/* -------------------- */
+
+.ambient-glow {
+  position: absolute;
+  inset: 0;
+  animation: all 8s ease-in-out infinite;
+}
+
+/* Default Hero Glow */
+.glow-normal {
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 92, 27, 0.12),
+    transparent 60%
+  );
+}
+
+/* Brighter Footer Glow */
+.glow-high {
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 92, 27, 0.28),
+    /* Increased opacity */ transparent 65% /* Spread a bit wider */
+  );
+}
+
+/* -------------------- */
+/* Particles */
+/* -------------------- */
+
+.particles-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px; /* Start slightly below the container */
+
+  background: rgba(255, 120, 40, 0.8);
+  border-radius: 50%;
+
+  /* Adds a tiny intrinsic glow to each particle */
+  box-shadow: 0 0 10px rgba(255, 120, 40, 0.6);
+
+  opacity: 0;
+  animation: float-up 8s linear infinite;
+}
+
+/* -------------------- */
+/* Animations */
+/* -------------------- */
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8; /* Fade in quickly */
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    /* Move up equivalent to the height of the container */
+    transform: translateY(-100vh);
+    opacity: 0; /* Fade out before hitting the top */
+  }
+}

@@ -1,4 +1,6 @@
-const Ticker = ({ items, className = "" }) => (
+import type { TickerProps } from "../../lib/types";
+
+const Ticker: React.FC<TickerProps> = ({ items, className = "" }) => (
     <div className={`w-full overflow-hidden flex relative z-10 ${className}`}>
         <div className="whitespace-nowrap flex font-space uppercase animate-ticker">
             {[...items, ...items].map((item, i) => (
