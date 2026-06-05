@@ -19,8 +19,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ num, title, desc, reverse, im
 
             {/* Text Container */}
             <div className="w-full md:w-1/2 flex flex-col gap-6">
-                <span className="font-space text-brand text-4xl font-bold">{num}</span>
-                <h3 className="font-mono font-bold text-4xl tracking-wide uppercase transition-colors duration-300 group-hover:text-brand">{title}</h3>
+                <span className="font-space text-brand text-3xl md:text-4xl font-bold">{num}</span>
+                <h3 className="font-mono font-bold text-1xl md:text-4xl tracking-wide uppercase transition-colors duration-300 group-hover:text-brand ">{title}</h3>
                 <p className="font-space text-gray-400 text-sm leading-relaxed max-w-md">{desc}</p>
             </div>
         </div>

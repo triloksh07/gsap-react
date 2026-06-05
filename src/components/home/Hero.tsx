@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 
                 </div>
 
-                <h1 className="hero-elem font-mono font-extrabold text-6xl lg:text-[6.5rem] leading-[0.95] uppercase tracking-tighter opacity-0">
+                <h1 className="hero-elem font-mono font-extrabold text-4xl md:text-6xl lg:text-[6.5rem] leading-[0.95] uppercase tracking-tighter opacity-0">
                     Full-Service <br />
                     Digital Agency <br />
                     <span className="text-brand">In Dubai</span>
@@ -43,11 +43,11 @@ const Hero: React.FC = () => {
                     Web design, SEO, branding, and digital marketing for UAE businesses that need clearer growth online.
                 </p>
 
-                <div className="hero-elem flex flex-col sm:flex-row gap-4 mt-4 opacity-0">
-                    <a href="#" className="bg-brand border border-transparent font-mono text-sm font-bold uppercase tracdking-widest px-8 py-4 hover:bg-transparent hover:border-brand hover:text-brand transition-all duration-300">
+                <div className="hero-elem flex flex-col sm:flex-row gap-4 mt-4 opacity-0 w-full md:w-normal items-center justify-center">
+                    <a href="#" className="bg-brand border border-transparent font-mono text-xs md:text-sm font-bold uppercase tracking-widest px-4 md:px-8 py-4 hover:bg-transparent hover:border-brand hover:text-brand transition-all duration-300 w-full md:w-60">
                         See Our Work
                     </a>
-                    <a href="#" className="border border-white/10 text-white font-mono text-sm font-bold uppercase tradcking-widest px-8 py-4 hover:border-brand  transition-all duration-300 flex items-center justify-center gap-2">
+                    <a href="#" className="border border-white/10 text-white font-mono text-xs md:text-sm font-bold uppercase tracking-widest px-8 py-4 hover:border-brand  transition-all duration-300 flex items-center justify-center gap-2 w-full md:w-60">
                         Book A Call →
                     </a>
                 </div>

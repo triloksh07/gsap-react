@@ -61,7 +61,7 @@ export default function App() {
 
       <Footer />
 
-      <button className="fixed bottom-6 right-6 bg-brand font-sans text-sm font-medium px-5 py-3 rounded-full hover:bg-orange-500 hover:cursor-pointer z-50  text-center">
+      <button className="fixed bottom-6 right-6 bg-brand font-sans text-sm font-medium px-6 py-1.5 rounded-full hover:bg-orange-500 hover:cursor-pointer z-50  text-center">
         Get Consultation<br />
         <span className="text-[10px] font-normal opacity-80">powered by Calendly</span>
       </button>
