@@ -3,21 +3,18 @@ import { type RefObject } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { SplitText } from 'gsap/SplitText';
 
-// Register the ScrollTrigger plugin once globally
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 /**
- * Initialize Lenis smooth scrolling and GSAP ScrollTrigger animations.
- * Performs complete, safe cleanups on component unmount to prevent memory leaks and duplicate runs.
- * * @param containerRef React ref pointing to the outer page wrapper/layout container.
+ * @param containerRef React ref pointing to the outer page wrapper/layout container.
  */
 export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): void => {
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
 
-        // Initialize Lenis
         const lenis = new Lenis({
             duration: 2,
             easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -30,10 +27,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
             infinite: false,
         });
 
-        const onScroll = () => {
-            ScrollTrigger.update();
-        }
-
+        const onScroll = () => ScrollTrigger.update();
         lenis.on('scroll', onScroll);
 
         // Sync GSAP's tick with Lenis frames
@@ -44,20 +38,90 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
         gsap.ticker.add(onTicker);
         gsap.ticker.lagSmoothing(0);
 
+        const tl = gsap.timeline();
+
         // GSAP Animations Context
         const ctx = gsap.context(() => {
 
-            // Hero elements sequential entry
+            const split = new SplitText(".hero-title", {
+                type: "lines, words, chars",
+                linesClass: "line"
+            });
+            const targets = split.chars;
+
+            tl.fromTo(
+                targets,
+                {
+                    yPercent: 100,
+                    opacity: 0,
+                    rotateX: -20,
+                    transformOrigin: "0% 50% -50",
+                },
+                {
+                    yPercent: 0,
+                    opacity: 1,
+                    rotateX: 0,
+                    duration: 0.6,
+                    stagger: 0.02,
+                    ease: "power4.out",
+                }
+            )
+                .fromTo(
+                    ".hero-desc",
+                    { y: 40, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    },
+                    "-=0.5"
+                )
+                .fromTo(
+                    ".hero-actions",
+                    { y: 60, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        stagger: 0.8,
+                        ease: "power3.out",
+                    },
+                    "-=0.7"
+                )
+                .fromTo(
+                    ".hero-scroll",
+                    { y: 40, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    },
+                    "-=0.5"
+                )
+                .fromTo(
+                    ".header",
+                    { y: -40, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        ease: "power3.out",
+                    },
+                    "-=0.9"
+                )
+
             gsap.fromTo(
-                ".hero-elem",
-                { y: 50, opacity: 0 },
+                ".hero-head",
+                { y: -5, opacity: 0, scale: 0.9 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1.2,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    delay: 0.2,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power1.out",
+                    delay: 0.3,
                 }
             );
 

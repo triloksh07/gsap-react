@@ -1,8 +1,8 @@
-import Text3DFlip from "../ui/text-3d-flip"
+
 
 const Header: React.FC = () => {
     return (
-        <header className="fixed top-0 w-full border-b border-white/5 bg-dark/80 backdrop-blur-md z-50">
+        <header className="header fixed top-0 w-full border-b border-white/5 bg-dark/80 backdrop-blur-md z-50">
             <div className="max-w-screen mx-auto px-8 h-15 flex items-center justify-between">
                 <div className="text-brand font-mono font-bold text-2xl tracking-wider">
                     <span className="text-white">D</span>K<span className="text-brand">+</span>
@@ -11,17 +11,8 @@ const Header: React.FC = () => {
                 <nav className="hidden md:flex items-center gap-8 font-space text-xs uppercase text-gray-400">
                     {['Home', 'Work', 'About', 'Services', 'Pricing', 'Contact'].map((item) => (
 
-                        <Text3DFlip
-                            className="bg-background hover:text-brand hover:cursor-pointer"
-                            textClassName="bg-background text-foreground"
-                            flipTextClassName="bg-background text-foreground"
-                            rotateDirection="top"
-                            staggerDuration={0.02}
-                            transition={{ type: "tween", duration: 0.3 }}
+                        <a key={item} href="#" className=" transition-colors duration-300 ">{item}</a>
 
-                        >
-                            <a key={item} href="#" className=" transition-colors duration-300 ">{item}</a>
-                        </Text3DFlip>
 
                     ))}
                 </nav>

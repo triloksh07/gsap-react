@@ -20,7 +20,7 @@
 .glow-normal {
   background: radial-gradient(
     circle at center,
-    rgba(212, 92, 27, 0.12),
+    rgba(212, 92, 27, 0.16),
     transparent 60%
   );
 }

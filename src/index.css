@@ -8,12 +8,12 @@
   --color-darker: #050505;
   --color-panel: #111111;
 
-  --fg: #ed5724;
-  --fg-dim: rgba(237, 87, 36, 0.5);
-  --fg-faint: rgba(237, 87, 36, 0.08);
-  --text: #f0ece4;
-  --text-dim: rgba(240, 236, 228, 0.45);
-  --border: rgba(240, 236, 228, 0.08);
+  --color-fg: #ed5724;
+  --color-fg-dim: rgba(237, 87, 36, 0.5);
+  --color-fg-faint: rgba(237, 87, 36, 0.08);
+  --color-text-primary: rgb(239, 235, 227);
+  --color-text-dim: rgba(240, 236, 228, 0.45);
+  --color-border: rgba(240, 236, 228, 0.08);
 
   --font-mono: "JetBrains Mono", monospace;
   --font-space: "Space Mono", monospace;
@@ -21,13 +21,15 @@
 
 @layer base {
   * {
+    margin: 0;
+    padding: 0;
     cursor: crosshair;
   }
 
   body {
     font-family: var(--font-mono);
     background-color: var(--color-dark);
-    color: white;
+    color: var(--text);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
