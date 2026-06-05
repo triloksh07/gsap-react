@@ -1,5 +1,12 @@
 import "./vertical-grid.css";
 
+interface VerticalGridProps {
+    direction?: "up" | "down";
+    showPulse?: boolean;
+    className?: string;
+    style?: React.CSSProperties;
+}
+
 const LINES = [
     { id: 1, left: "3%" },
     { id: 2, left: "26%" },
@@ -8,10 +15,17 @@ const LINES = [
     { id: 5, left: "97%" },
 ];
 
-export default function VerticalGrid() {
+export default function VerticalGrid({
+    direction = "down",
+    showPulse = true,
+    className = "",
+    style = {},
+}: VerticalGridProps) {
     return (
-        <div className="grid-overlay">
-
+        <div
+            className={`grid-overlay dir-${direction} ${className}`}
+            style={style}
+        >
             {LINES.map((line) => (
                 <div
                     key={line.id}
@@ -22,8 +36,7 @@ export default function VerticalGrid() {
                 </div>
             ))}
 
-            <div className="center-pulse" />
-
+            {showPulse && <div className="center-pulse" />}
         </div>
     );
 }

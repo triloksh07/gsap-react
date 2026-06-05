@@ -3,13 +3,13 @@ export interface TickerProps {
     className?: string;
 }
 
-
 export interface ProjectCardProps {
     num: string;
     title: string;
     desc: string;
     reverse?: boolean;
     placeholderText?: string;
+    image?: string;
 }
 
 export interface PricingCardProps {
@@ -21,3 +21,8 @@ export interface PricingCardProps {
     highlighted?: boolean;
 }
 
+export interface WorkCardProps {
+    num: string;
+    title: string;
+    desc: string;
+}

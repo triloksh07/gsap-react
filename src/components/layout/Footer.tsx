@@ -1,15 +1,11 @@
-import AmbientGlow from "../ui/BgGlow";
-import VerticalGrid from "../ui/VerticalGridUpdated";
+import AmbientGlow from "../ui/AmbientGlow";
+import VerticalGrid from "../ui/VerticalGrid";
 
-const Footer = () => (
+const Footer: React.FC = () => (
     <footer className="bg-darker pt-24 pb-12 relative overflow-hidden">
 
         <VerticalGrid direction="up" showPulse={false} />
         <AmbientGlow intensity="high" showParticles={true} />
-
-        {/* <div className="absolute inset-x-0 bottom-0 top-[35%] pointer-events-none z-0">
-            <AmbientGlow intensity="high" showParticles={true} />
-        </div> */}
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
 

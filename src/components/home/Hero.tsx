@@ -1,13 +1,11 @@
-import { useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-// import VerticalGrid from '../ui/VerticalGrid';
-import VerticalGrid from '../ui/VerticalGridUpdated';
+
+import VerticalGrid from '../ui/VerticalGrid';
 import AmbientGlow from '../ui/AmbientGlow';
 import CursorGlow from '../ui/CursorGlow';
 
 import Text3DFlip from "../ui/text-3d-flip"
 
-const Hero = () => {
+const Hero: React.FC = () => {
     return (
         <section className="relative min-h-[95vh] flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden">
 
@@ -15,12 +13,9 @@ const Hero = () => {
             <AmbientGlow />
             <CursorGlow />
 
-
             <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-6">
 
-
                 <div className="hero-elem font-mono text-brand text-xs tracfking-[0.2em] uppercase border border-brand/20 px-4 py-1.5 rounded-10 opacity-0">
-
 
                     <Text3DFlip
                         className="bg-background"
@@ -33,7 +28,6 @@ const Hero = () => {
 
                     >
                         Digital Agency - Dubai, UAE
-
 
                     </Text3DFlip>
 

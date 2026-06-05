@@ -8,7 +8,7 @@ import Lenis from 'lenis';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Custom hook to cleanly initialize Lenis smooth scrolling and robust GSAP ScrollTrigger animations.
+ * Initialize Lenis smooth scrolling and GSAP ScrollTrigger animations.
  * Performs complete, safe cleanups on component unmount to prevent memory leaks and duplicate runs.
  * * @param containerRef React ref pointing to the outer page wrapper/layout container.
  */
@@ -31,7 +31,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
         });
 
         const onScroll = () => {
-            return ScrollTrigger.update;
+            ScrollTrigger.update();
         }
 
         lenis.on('scroll', onScroll);
@@ -92,7 +92,26 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                         opacity: 1,
                         duration: 0.8,
                         ease: "power3.out",
-                        // clearProps: "all",
+                    }
+                );
+            });
+
+
+            gsap.utils.toArray<HTMLElement>(".reveal-img").forEach((elem) => {
+                gsap.fromTo(
+                    elem,
+                    {
+                        clipPath: "inset(0 100% 0 0)",
+                    },
+                    {
+                        clipPath: "inset(0 0% 0 0)",
+                        duration: 1.2,
+                        ease: "power1.out",
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                        },
                     }
                 );
             });
@@ -111,7 +130,6 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     duration: 0.8,
                     stagger: 0.15,
                     ease: "power3.out",
-                    // clearProps: "all",
                 }
             );
 
@@ -129,7 +147,6 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                         opacity: 1,
                         duration: 1,
                         ease: "power3.out",
-                        // clearProps: "transform",
                     }
                 );
             });
@@ -151,6 +168,24 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                 }
             });
 
+            // Work Section
+            gsap.fromTo(
+                '.work-card',
+                { y: 50, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: ".work-section",
+                        start: "top 80%",
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    clearProps: "transform",
+                }
+            );
+
             // Service row listings slide-in
             gsap.fromTo(
                 '.service-row',
@@ -165,7 +200,6 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     duration: 0.6,
                     stagger: 0.1,
                     ease: "power2.out",
-                    // clearProps: "transform",
                 }
             );
 
@@ -183,7 +217,6 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     duration: 0.8,
                     stagger: 0.2,
                     ease: "power3.out",
-                    // clearProps: "transform",
                 }
             );
 
@@ -201,7 +234,6 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     duration: 0.8,
                     stagger: 0.15,
                     ease: "power3.out",
-                    // clearProps: "transform",
                 }
             );
 

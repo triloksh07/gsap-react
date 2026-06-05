@@ -1,6 +1,6 @@
 import Text3DFlip from "../ui/text-3d-flip"
 
-const Header = () => {
+const Header: React.FC = () => {
     return (
         <header className="fixed top-0 w-full border-b border-white/5 bg-dark/80 backdrop-blur-md z-50">
             <div className="max-w-screen mx-auto px-8 h-15 flex items-center justify-between">

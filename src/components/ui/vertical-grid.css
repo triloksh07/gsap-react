@@ -1,9 +1,7 @@
 .grid-overlay {
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
   z-index: 1;
 }
 
@@ -13,14 +11,10 @@
 
 .grid-line {
   position: absolute;
-
   top: 0;
   bottom: 0;
-
   width: 1px;
-
   background: rgba(255, 255, 255, 0.05);
-
   overflow: hidden;
 }
 
@@ -34,101 +28,115 @@
 
 .travel-dot {
   position: absolute;
-
   left: 50%;
-
   width: 1px;
   height: 120px;
-
   transform: translateX(-50%);
+}
 
+/* Downward Direction (Hero) */
+.dir-down .travel-dot {
+  /* Fades out at the top, solid at the bottom */
   background: linear-gradient(
+    to bottom,
     transparent,
     rgba(255, 110, 40, 0.85),
     transparent
   );
-
-  animation: travel 8s linear infinite;
+  animation: travel-down 8s linear infinite;
 }
 
+/* Upward Direction (Footer) */
+.dir-up .travel-dot {
+  /* Fades out at the bottom, solid at the top */
+  background: linear-gradient(
+    to top,
+    transparent,
+    rgba(255, 110, 40, 0.85),
+    transparent
+  );
+  animation: travel-up 8s linear infinite;
+}
+
+/* Animation Delays */
 .grid-line:nth-child(1) .travel-dot {
   animation-delay: 0s;
 }
-
 .grid-line:nth-child(2) .travel-dot {
   animation-delay: 2s;
 }
-
 .grid-line:nth-child(3) .travel-dot {
   animation-delay: 1s;
 }
-
 .grid-line:nth-child(4) .travel-dot {
   animation-delay: 4s;
 }
-
 .grid-line:nth-child(5) .travel-dot {
   animation-delay: 3s;
 }
 
 /* -------------------- */
-/* Center Glow */
+/* Center Glow (Upgraded) */
 /* -------------------- */
 
 .center-pulse {
   position: absolute;
   z-index: -10;
-
   left: 50%;
   bottom: 70px;
 
-  width: 0.1px;
-  height: 20px;
+  width: 1px;
+  height: 100px;
 
   transform: translateX(-50%);
-
   border-radius: 50%;
 
-  background: #ff5b1f;
+  background: radial-gradient(
+    circle,
+    rgba(255, 91, 31, 0.45) 0%,
+    transparent 60%
+  );
 
-  box-shadow:
-    0 0 15px #ff5b1f,
-    0 0 30px #ff5b1f,
-    0 0 60px #ff5b1f;
-
-  animation: pulse 2.5s infinite;
+  animation: smooth-pulse 3s ease-in-out infinite;
 }
 
 /* -------------------- */
 /* Animations */
 /* -------------------- */
 
-@keyframes travel {
+@keyframes travel-down {
   from {
     top: -150px;
   }
-
   to {
     top: calc(100% + 150px);
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.3;
-    transform: translateX(-50%) scale(1);
+@keyframes travel-up {
+  from {
+    top: calc(100% + 150px);
   }
-
-  50% {
-    opacity: 0.8;
-    transform: translateX(-50%) scale(1.5);
-  }
-
-  100% {
-    opacity: 0.3;
-    transform: translateX(-50%) scale(1);
+  to {
+    top: -150px;
   }
 }
+
+@keyframes smooth-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(-50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+/* -------------------- */
+/* Media Queries */
+/* -------------------- */
 
 @media screen and (max-width: 480px) {
   .grid-line {

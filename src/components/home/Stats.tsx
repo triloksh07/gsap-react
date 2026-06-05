@@ -1,4 +1,4 @@
-const Stats = () => {
+const Stats: React.FC = () => {
     const stats = [
         { num: "30", label: "Projects Delivered" },
         { num: "6", label: "Skilled Team" },

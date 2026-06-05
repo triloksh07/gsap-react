@@ -13,11 +13,12 @@ import Header from './components/layout/Header';
 import Ticker from './components/home/Ticker';
 
 import { useGsapAnimations } from './hooks/useGsapAnimations';
+import WhoWeWorkWith from './components/home/WhoWeWorkWith';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
-  const appRef = useRef(null);
+  const appRef = useRef<HTMLDivElement>(null);
 
   useGsapAnimations(appRef);
 
@@ -46,12 +47,13 @@ export default function App() {
   return (
     <div ref={appRef} className="bg-dark text-white selection:bg-brand selection:text-white min-h-screen overflow-x-hidden font-mono">
       <Header />
-      
+
       <main>
         <Hero />
         <Ticker items={tickerItems1} className="border-y border-white/5 bg-darker py-3 text-xs text-brand/70 tracking-widest" />
         <Stats />
         <SelectedWork />
+        <WhoWeWorkWith />
         <Services />
         <Pricing />
         <Ticker items={tickerItems2} className="bg-brand text-dark py-4 border-y border-darker text-sm font-bold tracking-widest" />
