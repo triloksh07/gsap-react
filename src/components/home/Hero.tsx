@@ -5,7 +5,7 @@ import CursorGlow from '../ui/CursorGlow';
 
 const Hero: React.FC = () => {
     return (
-        <section className="relative min-h-[95vh] flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden">
+        <section className="relative min-h-[96vh] flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden">
 
             <VerticalGrid />
             <AmbientGlow />

@@ -10,8 +10,11 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 /**
  * @param containerRef React ref pointing to the outer page wrapper/layout container.
  */
-export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): void => {
+export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, enabled: boolean): void => {
     useEffect(() => {
+
+        if (!enabled) return;
+
         const container = containerRef.current;
         if (!container) return;
 
@@ -64,6 +67,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     duration: 0.6,
                     stagger: 0.02,
                     ease: "power4.out",
+                    delay:0.6,
                 }
             )
                 .fromTo(
@@ -126,20 +130,20 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
             );
 
             // Page Grid Parallax effect
-            gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((bg) => {
-                if (bg.parentElement) {
-                    gsap.to(bg, {
-                        yPercent: 20,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: bg.parentElement,
-                            start: "top bottom",
-                            end: "bottom top",
-                            scrub: true,
-                        },
-                    });
-                }
-            });
+            // gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((bg) => {
+            //     if (bg.parentElement) {
+            //         gsap.to(bg, {
+            //             yPercent: 20,
+            //             ease: "none",
+            //             scrollTrigger: {
+            //                 trigger: bg.parentElement,
+            //                 start: "top bottom",
+            //                 end: "bottom top",
+            //                 scrub: true,
+            //             },
+            //         });
+            //     }
+            // });
 
             // Individual element scroll reveals
             gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((elem) => {
@@ -170,7 +174,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
                     {
                         clipPath: "inset(0 0% 0 0)",
                         duration: 1.2,
-                        ease: "power1.out",
+                        ease: "power3.out",
                         scrollTrigger: {
                             trigger: elem,
                             start: "top 85%",
@@ -310,5 +314,5 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>): 
             lenis.off('scroll', onScroll);
             lenis.destroy();
         };
-    }, [containerRef]);
+    }, [containerRef, enabled]);
 };

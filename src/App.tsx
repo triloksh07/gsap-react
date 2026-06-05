@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import "./App.css";
 
 import gsap from 'gsap';
@@ -14,13 +14,16 @@ import Ticker from './components/home/Ticker';
 
 import { useGsapAnimations } from './hooks/useGsapAnimations';
 import WhoWeWorkWith from './components/home/WhoWeWorkWith';
+import LoaderScreen from './components/layout/LoaderScreen';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const appRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
 
-  useGsapAnimations(appRef);
+  // useGsapAnimations(appRef);
+  useGsapAnimations(appRef, !loading);
 
   const tickerItems1 = [
     "✦ Web Development",
@@ -45,26 +48,37 @@ export default function App() {
   ];
 
   return (
-    <div ref={appRef} className="bg-dark text-white selection:bg-brand selection:text-white min-h-screen overflow-x-hidden font-mono">
-      <Header />
+    <div ref={appRef} className="bg-dark text-white min-h-screen overflow-x-hidden font-mono">
 
-      <main>
-        <Hero />
-        <Ticker items={tickerItems1} className="border-y border-white/5 bg-darker py-3 text-xs text-brand/70 tracking-widest" />
-        <Stats />
-        <SelectedWork />
-        <WhoWeWorkWith />
-        <Services />
-        <Pricing />
-        <Ticker items={tickerItems2} className="bg-brand text-dark py-4 border-y border-darker text-sm font-bold tracking-widest" />
-      </main>
+      {loading && (
+        <LoaderScreen
+          onComplete={() => setLoading(false)}
+        />
+      )}
 
-      <Footer />
+      {!loading && (
+        <>
+          <Header />
 
-      <button className="fixed bottom-6 right-6 bg-brand font-sans text-sm font-medium px-6 py-1.5 rounded-full hover:bg-orange-500 hover:cursor-pointer z-50  text-center">
-        Get Consultation<br />
-        <span className="text-[10px] font-normal opacity-80">powered by Calendly</span>
-      </button>
+          <main>
+            <Hero />
+            <Ticker items={tickerItems1} className="border-y border-white/5 bg-gb-dark py-2 text-xs text-brand/70 tracking-widest" />
+            <Stats />
+            <SelectedWork />
+            <WhoWeWorkWith />
+            <Services />
+            <Pricing />
+            <Ticker items={tickerItems2} className="bg-brand text-dark py-4 border-y border-darker text-sm font-bold tracking-widest" />
+          </main>
+
+          <Footer />
+
+          <button className="fixed bottom-6 right-6 bg-brand font-sans text-sm font-medium px-6 py-1.5 rounded-full hover:bg-orange-500 hover:cursor-pointer z-50  text-center">
+            Get Consultation<br />
+            <span className="text-[10px] font-normal opacity-80">powered by Calendly</span>
+          </button>
+        </>
+      )}
     </div>
   );
 }
