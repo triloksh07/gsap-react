@@ -3,7 +3,7 @@ import VerticalGrid from '../ui/VerticalGrid';
 import AmbientGlow from '../ui/AmbientGlow';
 import CursorGlow from '../ui/CursorGlow';
 
-import Text3DFlip from "../ui/text-3d-flip"
+// import Text3DFlip from "../ui/text-3d-flip"
 
 const Hero: React.FC = () => {
     return (
@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
 
                 <div className="hero-elem font-mono text-brand text-xs tracfking-[0.2em] uppercase border border-brand/20 px-4 py-1.5 rounded-10 opacity-0">
 
-                    <Text3DFlip
+                    {/* <Text3DFlip
                         className="bg-background"
                         textClassName="bg-background text-foreground"
                         flipTextClassName="bg-background text-foreground"
@@ -26,10 +26,10 @@ const Hero: React.FC = () => {
                         // transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         transition={{ type: "tween", duration: 0.25 }}
 
-                    >
-                        Digital Agency - Dubai, UAE
+                    > */}
+                    Digital Agency - Dubai, UAE
 
-                    </Text3DFlip>
+                    {/* </Text3DFlip> */}
 
                 </div>
 

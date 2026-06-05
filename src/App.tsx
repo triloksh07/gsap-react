@@ -13,6 +13,7 @@ import Header from './components/layout/Header';
 import Ticker from './components/home/Ticker';
 
 import { useGsapAnimations } from './hooks/useGsapAnimations';
+// import { useGsapAnimations } from './hooks/old';
 import WhoWeWorkWith from './components/home/WhoWeWorkWith';
 
 gsap.registerPlugin(ScrollTrigger);

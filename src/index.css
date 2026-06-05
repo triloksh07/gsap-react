@@ -11,9 +11,13 @@
   --fg: #ed5724;
   --fg-dim: rgba(237, 87, 36, 0.5);
   --fg-faint: rgba(237, 87, 36, 0.08);
-  --text: #f0ece4;
+  --txt-primary: rgb(239, 235, 227);
+  --text-primary: #f0ece4;
+  --text-secondary: #5F5B57;
   --text-dim: rgba(240, 236, 228, 0.45);
   --border: rgba(240, 236, 228, 0.08);
+
+  --bg-dark: rgb(12, 12, 11);
 
   --font-mono: "JetBrains Mono", monospace;
   --font-space: "Space Mono", monospace;
@@ -21,6 +25,8 @@
 
 @layer base {
   * {
+    margin: 0;
+    padding: 0;
     cursor: crosshair;
   }
 
