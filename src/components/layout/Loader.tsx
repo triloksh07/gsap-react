@@ -12,7 +12,7 @@ const Loader = ({ percentRef }: LoaderProps) => {
 
                 {/* Logo */}
                 <div className="mb-6 text-3xl font-bold text-white">
-                    DX
+                    DK
                 </div>
 
                 {/* Track */}
