@@ -43,7 +43,7 @@ const Pricing: React.FC = () => (
             <h2 className="reveal-up opacity-0 font-mono font-extrabold text-5xl md:text-[5.5rem] lg:text-[6.5rem] uppercase tracking-tighter text-center mb-16">
                 Pricing
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 items-center place-items-center">
                 <PricingCard
                     title="Monthly Subscription" subtitle="Starts from" price="3,500 <span class='text-xs uppercase font-bold font-space'>AED/mo</span>"
                     desc="Ongoing web, SEO, content, and design support for teams that need steady improvements every month."
