@@ -28,7 +28,7 @@ const Services: React.FC = () => {
     ];
 
     return (
-        <section className="services-section py-24 border-t border-white/5 overflow-hidden bg-dark mt-78 md:mt-8">
+        <section className="services-section py-24 border-t border-white/5 overflow-hidden bg-dark md:mt-8">
             <div className="max-w-5xl mx-auto px-6">
                 <h2 className="reveal-up font-mono font-extrabold text-5xl md:text-[4.5rem] lg:text-[6.5rem] leading-none uppercase tracking-tighter text-center mb-16">
                     Our Digital
