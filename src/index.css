@@ -52,21 +52,6 @@
   }
 }
 
-/* Loop Animation for Tickers */
-@keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-ticker {
-  display: flex;
-  animation: ticker 20s linear infinite;
-}
-
 /* Lenis Smooth Scroll Foundation */
 html.lenis,
 html.lenis body {
@@ -83,4 +68,43 @@ html.lenis body {
 }
 .lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* text scramble attribute */
+[data-scramble] {
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+/* infinite scroll marquee */
+.marquee-text {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-text-track {
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+
+  gap: 1rem;
+
+  animation: marquee-scroll  var(--marquee-speed, 35s) linear infinite;
+
+  will-change: transform;
+}
+
+.ticker-item {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }

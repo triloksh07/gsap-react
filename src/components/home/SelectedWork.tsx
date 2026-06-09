@@ -2,11 +2,12 @@ import React from "react";
 import ProjectCard from "./ProjectCard";
 
 const SelectedWork: React.FC = () => (
-    <section className="py-32 overflow-hidden bg-dark">
+    <section className="py-32 overflow-hidden bg-dark border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-            <div className="reveal-up opacity-0 text-center mb-24">
-                <h2 className="font-mono font-extrabold text-5xl md:text-[5.5rem] lg-text-[6.5rem] leading-[0.85] uppercase tracking-tighter">
-                    Selected<br />
+            <div className="reveal-up text-center mb-24 overflow-hidden">
+                <h2 className="font-mono font-extrabold text-5xl md:text-[5.5rem] lg-text-[6.5rem]  leading-[0.85] uppercase tracking-tighter  flex flex-col items-center justify-center">
+
+                    <span className="w-full" >Selected</span>
                     <span className="text-transparent w-full" style={{ WebkitTextStroke: '1px white' }}>Work</span>
                 </h2>
             </div>

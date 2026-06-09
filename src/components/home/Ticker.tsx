@@ -1,13 +1,26 @@
 import type { TickerProps } from "../../lib/types";
 
-const Ticker: React.FC<TickerProps> = ({ items, className = "" }) => (
-    <div className={`w-full overflow-hidden flex relative z-10 ${className}`}>
-        <div className="whitespace-nowrap flex font-space uppercase animate-ticker">
-            {[...items, ...items].map((item, i) => (
-                <span key={i} className="px-4">{item}</span>
-            ))}
+const Ticker: React.FC<TickerProps> = ({
+    items,
+    className = "",
+}) => {
+    const duplicatedItems = [...items, ...items, ...items, ...items];
+
+    return (
+        <div className={`marquee-text ${className}`}>
+            <div className="marquee-text-track">
+                {duplicatedItems.map((item, index) => (
+                    <span
+                        key={index}
+                        aria-hidden={index >= items.length}
+                        className="ticker-item"
+                    >
+                        {item}
+                    </span>
+                ))}
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 export default Ticker;

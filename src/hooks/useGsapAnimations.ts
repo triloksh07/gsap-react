@@ -19,7 +19,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
         if (!container) return;
 
         const lenis = new Lenis({
-            duration: 2,
+            duration: 1.2,
             easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
@@ -43,8 +43,11 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
 
         const tl = gsap.timeline();
 
+
         // GSAP Animations Context
         const ctx = gsap.context(() => {
+
+            // ========== hero text reveal ==============
 
             const split = new SplitText(".hero-title", {
                 type: "lines, words, chars",
@@ -55,31 +58,28 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
             tl.fromTo(
                 targets,
                 {
-                    yPercent: 100,
+                    yPercent: 120,
                     opacity: 0,
-                    rotateX: -20,
-                    transformOrigin: "0% 50% -50",
                 },
                 {
                     yPercent: 0,
                     opacity: 1,
-                    rotateX: 0,
-                    duration: 0.6,
+                    duration: 1,
                     stagger: 0.02,
-                    ease: "power4.out",
-                    delay:0.6,
+                    ease: "expo.out",
+                    delay: 0.5,
                 }
             )
                 .fromTo(
                     ".hero-desc",
-                    { y: 40, opacity: 0 },
+                    { y: 18, opacity: 0 },
                     {
                         y: 0,
                         opacity: 1,
-                        duration: 0.8,
+                        duration: 0.95,
                         ease: "power3.out",
                     },
-                    "-=0.5"
+                    "-=0.8"
                 )
                 .fromTo(
                     ".hero-actions",
@@ -113,8 +113,15 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
                         duration: 1,
                         ease: "power3.out",
                     },
-                    "-=0.9"
+                    "-=0.7"
                 )
+                .fromTo("#heroLoader",
+                    { width: "0%" },
+                    {
+                        width: "100%",
+                        duration: 2.5,
+                        ease: "power2.inOut"
+                    }, 0);
 
             gsap.fromTo(
                 ".hero-head",
@@ -129,42 +136,102 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
                 }
             );
 
+            // =================================
+
+
+            // ── DATA METRIC SCROLL ENGINE ────────────────────────
+
+            document.querySelectorAll<HTMLElement>(".ag-stat__num").forEach((el) => {
+                const target = parseInt(el.getAttribute("data-count") || "0", 10);
+                const c = { v: 0 };
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: "top 90%",
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(c, {
+                            v: target,
+                            duration: 2,
+                            ease: "power2.out",
+                            onUpdate: () => {
+                                el.textContent = String(Math.floor(c.v));
+                            },
+                        });
+                    },
+                });
+            });
+
+            gsap.fromTo(
+                ".ag-stat",
+                { opacity: 0.7, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    scrollTrigger: { trigger: ".ag-stats", start: "top 90%", once: true },
+                }
+            );
+
             // Page Grid Parallax effect
-            // gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((bg) => {
-            //     if (bg.parentElement) {
-            //         gsap.to(bg, {
-            //             yPercent: 20,
-            //             ease: "none",
-            //             scrollTrigger: {
-            //                 trigger: bg.parentElement,
-            //                 start: "top bottom",
-            //                 end: "bottom top",
-            //                 scrub: true,
-            //             },
-            //         });
-            //     }
-            // });
+            gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((bg) => {
+                if (bg.parentElement) {
+                    gsap.to(bg, {
+                        yPercent: 20,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: bg.parentElement,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true,
+                        },
+                    });
+                }
+            });
 
             // Individual element scroll reveals
             gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((elem) => {
                 gsap.fromTo(
                     elem,
-                    { y: 50, opacity: 0 },
                     {
+                        opacity: 0,
+                        y: 50,
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.08,
+                        duration: 0.9,
+                        ease: "power3.out",
                         scrollTrigger: {
                             trigger: elem,
                             start: "top 85%",
-                            toggleActions: "play none none reverse",
                         },
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: "power3.out",
                     }
                 );
             });
 
+            gsap.fromTo(
+                ".reveal-up",
+                {
+                    opacity: 0,
+                    y: 18,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.9,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".reveal-up",
+                        start: "top 80%",
+                        once: true,
+                    },
+                }
+            );
 
+            // image clip-path reveal
             gsap.utils.toArray<HTMLElement>(".reveal-img").forEach((elem) => {
                 gsap.fromTo(
                     elem,
@@ -174,11 +241,13 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
                     {
                         clipPath: "inset(0 0% 0 0)",
                         duration: 1.2,
-                        ease: "power3.out",
+                        // ease: "power3.out",
+                        ease: "expo.inOut",
                         scrollTrigger: {
                             trigger: elem,
                             start: "top 85%",
                             toggleActions: "play none none reverse",
+                            once: true,
                         },
                     }
                 );
@@ -239,7 +308,7 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
             // Work Section
             gsap.fromTo(
                 '.work-card',
-                { y: 50, opacity: 0 },
+                { y: 18, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: ".work-section",
@@ -250,14 +319,13 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
                     duration: 0.8,
                     stagger: 0.2,
                     ease: "power3.out",
-                    clearProps: "transform",
                 }
             );
 
             // Service row listings slide-in
             gsap.fromTo(
                 '.service-row',
-                { x: -40, opacity: 0 },
+                { x: -12, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: ".services-section",
@@ -288,26 +356,25 @@ export const useGsapAnimations = (containerRef: RefObject<HTMLElement | null>, e
                 }
             );
 
-            // Footer elements progressive fade-up
             gsap.fromTo(
                 '.footer-reveal',
-                { y: 30, opacity: 0 },
+                { y: 40, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: "footer",
-                        start: "top 90%",
+                        start: "top 80%",
+                        once: true,
                     },
                     y: 0,
                     opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.15,
+                    duration: 0.9,
+                    stagger: 0.08,
                     ease: "power3.out",
                 }
             );
 
         }, container);
 
-        // Cleanup
         return () => {
             ctx.revert();
             gsap.ticker.remove(onTicker);

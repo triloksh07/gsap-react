@@ -7,7 +7,7 @@ interface LoaderProps {
 
 const Loader = ({ percentRef }: LoaderProps) => {
     return (
-        <div className="loader fixed inset-0 z-[9999] flex items-center justify-center bg-background">
+        <div className="loader fixed inset-0 z-9999 flex items-center justify-center bg-background">
             <div className="w-52 text-center">
 
                 {/* Logo */}
